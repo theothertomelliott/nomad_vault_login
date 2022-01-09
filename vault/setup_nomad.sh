@@ -4,7 +4,8 @@
 set -x
 set -e
 
-export VAULT_ADDR=http://127.0.0.1:8200/
+source vault/env.sh
+
 export VAULT_TOKEN=test
 
 # https://learn.hashicorp.com/tutorials/nomad/vault-nomad-secrets
@@ -31,5 +32,3 @@ path "nomad/creds/manager" {
 EOF
 
 vault token create -format=json -policy=nomad-writer-policy > state/creation_token.json
-
-VAULT_TOKEN=$(cat state/creation_token.json | jq -r ".auth.client_token") vault read -format=json nomad/creds/writer
