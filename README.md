@@ -20,3 +20,4 @@ Once all resources are running, you can authenticate to the Nomad UI as a user w
 ./login_to_nomad_ui.sh
 ```
 
+You will be prompted for a password for the `demouser` account, the password is `password`.
