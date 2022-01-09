@@ -30,5 +30,3 @@ path "nomad/creds/manager" {
   capabilities = ["read"]
 }
 EOF
-
-vault token create -format=json -policy=nomad-writer-policy > state/creation_token.json
