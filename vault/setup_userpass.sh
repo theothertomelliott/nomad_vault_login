@@ -1,5 +1,8 @@
 #!/bin/bash
 
+set -x
+set -e
+
 source vault/env.sh
 
 export VAULT_TOKEN=test
