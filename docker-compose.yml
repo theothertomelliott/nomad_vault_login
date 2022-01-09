@@ -1,0 +1,40 @@
+version: '2.1'
+
+services:
+  nomad:
+    build:
+      context: ./nomad
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /tmp:/tmp
+      - "./nomad/nomad.hcl:/var/nomad/nomad.hcl"
+    ports: 
+      - "4646:4646"
+      - "4647:4647"
+      - "4648:4648"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4646"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  vault:
+    build:
+      context: ./vault
+      dockerfile: Dockerfile
+    volumes:
+      - "./vault/vault.hcl:/var/vault/vault.hcl"
+    ports: 
+      - "8200:8200"
+      - "8201:8201"
+  consul:
+    build:
+      context: ./consul
+      dockerfile: Dockerfile
+    volumes:
+      - "./consul/consul.hcl:/var/consul/consul.hcl"
+    ports:
+      - "8500:8500"
+      - "8502:8502"
+      - "8600:8600"
