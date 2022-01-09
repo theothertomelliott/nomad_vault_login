@@ -1,9 +1,9 @@
 #!/bin/bash
 
-set -x
-set -e
-
 source vault/env.sh
+
+# Log out of vault
+rm -f ~/.vault-token
 
 vault login -method=userpass username=demouser
 
