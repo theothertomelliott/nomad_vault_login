@@ -28,13 +28,3 @@ services:
     ports: 
       - "8200:8200"
       - "8201:8201"
-  consul:
-    build:
-      context: ./consul
-      dockerfile: Dockerfile
-    volumes:
-      - "./consul/consul.hcl:/var/consul/consul.hcl"
-    ports:
-      - "8500:8500"
-      - "8502:8502"
-      - "8600:8600"
